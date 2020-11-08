@@ -1,0 +1,66 @@
+﻿<div class="container">
+    <div class="row">
+
+        <div class="col-md-12">
+
+            <!-- BEGIN EXAMPLE TABLE PORTLET-->
+            <div class="portlet light" style="height:700px">
+                <div class="portlet-title">
+
+                    <div class="caption col-md-12">
+                        <span class="caption-subject font-green-sharp bold uppercase">
+                            Manage articles
+                        </span>
+                    </div>
+
+                    <div class="portlet-body">
+
+                        <div class="table-toolbar">
+
+                            <div class="col-md-2 col-sm-12 col-xs-12 pull-left">
+                                <a class="btn btn-success" target="_blank" href="/Account/add" id="btn-add">Create new</a>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="table-responsive col-md-12 table-responsive" style="height:500px">
+                    <table class="table table-bordered table-hover table-striped ">
+                        <thead>
+                            <tr class="text-center">
+
+                                <td>SAP</td>
+                                <td>Name</td>
+                                <td>Workcell</td>
+                                <td>Position</td>
+                                <td>Sector</td>
+                                <td>Image</td>
+
+                                <td>Utilities</td>
+
+                            </tr>
+                        </thead>
+                        <tbody id="table-content">
+                        </tbody>
+                    </table>
+                </div>
+                <div class="pagination" id="pagination">
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+@section Script{
+
+    <script src="~/js/get-employee-pagination.js"></script>
+}
+
+
+

@@ -1,0 +1,82 @@
+﻿@*@model List<SharedObjects.ValueObjects.VEmployee>*@
+@model IEnumerable<SharedObjects.ValueObjects.VEmployee>
+<!-- RenderBody()-->
+
+
+<div class="container-fluid">
+    <div class="row">
+
+        <div class="col-md-12">
+
+            <!-- BEGIN EXAMPLE TABLE PORTLET-->
+            <div class="portlet light" style="height:1500px">
+                <div class="portlet-title">
+
+                    <div class="caption col-md-12">
+                        <span class="caption-subject font-green-sharp bold uppercase">
+                            Employee Information
+                        </span>
+                    </div>
+
+                    <div class="portlet-body">
+
+                        <div class="table-toolbar">
+
+                            <div class="col-md-2 col-sm-12 col-xs-12 pull-left">
+                                <a class="btn btn-success" href="/admin/add" data-toggle="modal" id="btn-add">Create New</a>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="table-responsive col-md-12">
+                    <table class="table table-bordered table-hover table-striped table-responsive">
+                        <thead>
+                            <tr class="text-center">
+                                <th>@Html.DisplayNameFor(model => model.Sap)</th>
+                                <th>@Html.DisplayNameFor(model => model.Email)</th>
+                                <th>@Html.DisplayNameFor(model => model.Workcell)</th>
+                                <th>@Html.DisplayNameFor(model => model.TotalAssesment)</th>
+                                <th>@Html.DisplayNameFor(model => model.TotalAssesment)</th>
+                                <th>@Html.DisplayNameFor(model => model.TotalWeight)</th>
+                                <th>Utilities</th>
+                            </tr>
+                        </thead>
+                        <tbody id="table-content">
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.Sap</td>
+                                    <td>@item.Email</td>
+                                    <td>@item.Workcell</td>
+                                    <td><img style="width: auto; height: 60px" src="~/images/@item.Image" /></td>
+                                    <td>@item.Email</td>
+                                    <td>@item.TotalWeight</td>
+                                    <td style="background: linear-gradient( item.GradientBackGround)">
+                                        <a class="btn default btn-xs purple update" data-toggle="modal" href="/Admin/GetSkillMatrix" data-sap="@item.Sap" title="Update"> <span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
+                                        <a class="btn default btn-xs red delete" data-username="@item.Sap"><span class="glyphicon glyphicon-trash" title="Delete"></span></a>
+                                    </td>
+                                </tr>
+
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <div class="pagination" id="pagination">
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+@section Script{
+    <script src="~/js/employee.js"></script>
+}
+
+

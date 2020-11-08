@@ -1,0 +1,101 @@
+﻿@model List<SharedObjects.ValueObjects.VSearchResult>
+<!-- RenderBody()-->
+
+<div class="container-fluid">
+    <div class="row">
+
+        <div class="col-md-12">
+
+            <!-- BEGIN EXAMPLE TABLE PORTLET-->
+            <div class="portlet light" style="height:2000px">
+                <div class="portlet-title">
+
+                    <div class="caption col-md-12">
+                        <span class="caption-subject font-green-sharp bold uppercase">
+                            Search Employee
+                        </span>
+                    </div>
+
+                    <div class="portlet-body">
+
+                        <div class="table-toolbar">
+                            <form class="modal-body" id="frm-save">
+
+                                <div class="col-md-3 pull-left">
+                                    <label for="txt-SAP">SAP</label>
+                                    <input type="text" class="form-control" id="txt-SAP" data-sap="SAP" name="SAP" style="color:mediumvioletred">
+                                </div>
+                                <div class="col-md-3 pull-left">
+                                    <label for="txt-Email">Email</label>
+                                    <input type="text" class="form-control" id="txt-Email" data-email="Email" name="Email" style="color:mediumvioletred">
+                                </div>
+                                <div class="col-md-3 pull-left">
+                                    <label for="txt-Name">Name</label>
+                                    <input type="text" class="form-control" id="txt-Name" data-name="Name" name="Name" style="color:mediumvioletred">
+                                </div>
+                                <div class="col-md-4  pull-left">
+                                    <a class="btn btn-success" id="btn-search">Search</a>
+                                </div>
+
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="table-responsive col-md-12">
+                    <table class="table table-bordered table-hover table-striped table-responsive">
+                        <thead>
+                            <tr class="text-center bold font-green-sharp">
+
+                                <td>SAP</td>
+                                <td>Name</td>
+                                <td>Email</td>
+                                <td>Supperior Email</td>
+                                <td>Workcell</td>
+                                <td>Position</td>
+                                <td>Sector</td>
+                                <td>Image</td>
+                                <td>TotalWeight</td>
+                                <td>TotalAssesment</td>
+                                <td>Utilities</td>
+                            </tr>
+                        </thead>
+                        <tbody id="table-content">
+                            <tr class="text-center">
+                                <td id="sap"></td>
+                                <td id="name"></td>
+                                <td id="email"></td>
+                                <td id="superiorEmail"></td>
+                                <td id="workcell"></td>
+                                <td id="position"></td>
+                                <td id="sector"></td>
+                                @*<td id="image"></td>*@
+                                <td><img style="width: auto; height: 60px"  id="image" /></td>
+                                <td id="totalWeight"></td>
+                                <td id="totalAssesment"></td>
+                                <td id="utilities">
+                                    <a class="btn default btn-xs red remove" data-username="" title="Remove user"> <span class="glyphicon glyphicon-minus"></span></a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="table-responsive col-md-12" id="table-matrix">
+                  
+                </div>
+              
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+@section Script{
+    <script src="~/js/searchEmployee.js"></script>
+}
+
+
+
