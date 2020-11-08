@@ -17,7 +17,7 @@ namespace Services.Services
         public async Task<ResponseResult> Add( AddSectorViewModel model)
         {
             ResponseResult responseResult = new ResponseResult();
-            StringContent content = new StringContent(JsonConvert.SerializeObject(model.Sector), Encoding.UTF8, "application/json");
+            StringContent content = new StringContent(JsonConvert.SerializeObject(model), Encoding.UTF8, "application/json");
             using (var response = await httpClient.PostAsync("api/Sector/add", content))
             {
                 string apiResponse = await response.Content.ReadAsStringAsync();
