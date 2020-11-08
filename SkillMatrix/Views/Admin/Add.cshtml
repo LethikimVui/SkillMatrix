@@ -2,7 +2,7 @@
 
 @{
     ViewData["Title"] = "Add";
-    //var sectors = ViewData["sectors"] as IEnumerable<SharedObjects.ValueObjects.VSector>;
+    var sectors = ViewData["sectors"] as IEnumerable<SharedObjects.ValueObjects.VSector>;
 }
 
 
@@ -60,20 +60,11 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label asp-for="Sector" class="control-label"></label>
-                        @*<input asp-for="Sector" class="form-control" />
-                            <span asp-validation-for="Sector" class="text-danger"></span>*@
-
-
                         <select asp-for="Sector" name="Sector" class="form-control">
-                            @*@foreach (var item in sectors)
-                                {
-                                    <option value=@item.Id>@item.Sector</option>
-
-                                }*@
-
-                            <option value=2>ENG</option>
-                            <option value=3>Manager</option>
-                            <option value=4>Tech</option>
+                            @foreach (var item in @sectors.OrderByDescending(c => c.Id).ToList())
+                            {
+                                <option value=@item.Id>@item.Sector</option>
+                            }
                         </select>
                         <span asp-validation-for="Sector" class="text-danger"></span>
 
