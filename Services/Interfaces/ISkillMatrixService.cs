@@ -10,6 +10,8 @@ namespace Services.Interfaces
     public interface ISkillMatrixService
     {
         Task<List<VSkillMatrix>> GetSkill(string sap);
+        Task<List<VTopicByTrainer>> GetTopicByTrainerNTID(string sap);
 
+        
     }
 }

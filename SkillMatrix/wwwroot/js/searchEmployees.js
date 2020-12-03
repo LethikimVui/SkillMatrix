@@ -1,11 +1,13 @@
-﻿$(document).ready(function () {
+﻿
+$(document).ready(function () {
     $('body').off('click', '#btn-search').on('click', '#btn-search', Search);
+    $('body').off('click', '#evaluate').on('click', '#evaluate', LoadEmployeeInfo);
 
     function Search() {
         var _tranferSAP = $('#txt-search').val();
         $.ajax({
             type: 'post',
-            url: '/admin/GetBySAP',
+            url: '/admin/GetEmployeeBySAP',
             dataType: 'json',
             data: { sap: _tranferSAP },
             success: function (response) {
@@ -14,13 +16,38 @@
                 }
                 else {
                     var data = response.result;
-                     
-                    if (data == null) {
+                    if (data == []) {
                         bootbox.alert(`khong tim thay ${_tranferSAP}?`)
                     }
                     else {
+                        LoadEmployees(_tranferSAP)
+                    }
+                }
+            }
+        })
+    }
+    function LoadEmployees(_tranferSAP) {
+        $.ajax({
+            type: 'post',
+            url: '/admin/GetEmployeeBySAP_partialView',
+            data: { sap: _tranferSAP },
+            success: function (response) {
+                $('#table-employees').html(response);
+            }
+        })
+    }
+    function LoadEmployeeInfo() {
+        var _tranferSAP = $(this).data('sap'); //$('#txt-search').val();
+        
+        $.ajax({
+            type: 'post',
+            url: '/admin/GetBySAP',
+            dataType: 'json',
+            data: { sap: _tranferSAP },
+            success: function (response) {
+                var data = response.result;
+
                         LoadSkill(_tranferSAP)
-                        
                         $('#sap').text(data.sap);
                         $('#name').text(data.name);
                         $('#email').text(data.email);
@@ -30,25 +57,19 @@
                         $('#sector').text(data.sector);
                         $('#image').attr("src", '/images/' + data.image);
                         $('#totalWeight').text(data.totalWeight);
-                        $('#totalAssesment').text(data.totalAssesment);
-                        //$('#utilities').text('');
-
-                    }
-                }
+            
             }
         })
     }
-    function LoadSkill(_tranferSAP) {
 
+    function LoadSkill(_tranferSAP) {
         $.ajax({
             type: 'post',
             url: '/admin/GetSkillMatrix',
             data: { sap: _tranferSAP },
             success: function (response) {
-
                 $('#table-matrix').html(response);
             }
         })
-    
     }
 })

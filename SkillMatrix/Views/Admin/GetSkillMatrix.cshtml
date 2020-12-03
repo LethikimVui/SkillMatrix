@@ -1,16 +1,24 @@
 ﻿@model List<SharedObjects.ValueObjects.VSkillMatrix>
+@using SharedObjects.Extensions
+
+@*@{
+        var topics = ViewData["topics"] as IEnumerable<SharedObjects.ValueObjects.VTopicByTrainer>;
+    }*@
+
+
 
 
 <table class="table table-bordered table-hover table-striped table-responsive">
     <thead>
         <tr class="text-center bold font-blue-sharp">
+            <td>Topic Id</td>
 
-            <td>topic</td>
-            <td>trainer</td>
-            <td>weight</td>
-            <td>evaluator</td>
-            <td>evalScore</td>
-            <td>assesScore</td>
+            <td>Topic</td>
+            <td>Trainer</td>
+            <td>Weight</td>
+            <td>Evaluator</td>
+            <td>EvalScore</td>
+            <td>AssesScore</td>
             <td>Utilities</td>
 
         </tr>
@@ -18,32 +26,49 @@
     <tbody>
         @foreach (var item in Model)
         {
-        <tr>
-            <td>
-                <span>@item.Topic</span>
-            </td>
-            <td>
-                <span>@item.Trainer</span>
-            </td>
-            <td>
-                <span>@item.Weight</span>
+            <tr>
+                <td>
+                    <span>@item.Id</span>
+                </td>
+                <td>
+                    <span>@item.Topic</span>
+                </td>
+                <td>
+                    <span>@item.Trainer</span>
+                </td>
+                <td>
+                    <span>@item.Weight</span>
 
-            </td>
+                </td>
 
-            <td>
-                <span>@item.Evaluator</span>
-            </td>
-            <td>
-                <span>@item.EvalScore</span>
-            </td>
-            <td>
-                <span>@item.AssesScore</span>
-            </td>
+                <td>
+                    <span>@item.Evaluator</span>
+                </td>
+                <td>
+                    <span>@item.EvalScore</span>
+                </td>
+                <td>
+                    <span>@item.AssesScore</span>
+                </td>
+                <td>
+                    @*@foreach (var topic in topics)
+                        {
+                            if (topic.Id == item.Id)
+                            {
 
-            <td>
-                <a class="btn default btn-xs red remove" data-username="@item.Trainer" title="Remove user"> <span class="glyphicon glyphicon-minus"></span></a>
-            </td>
-        </tr>
+                                <a class="btn default btn-xs red remove" data-username="@item.Id" title="Remove user"> <span class="glyphicon glyphicon-minus"></span></a>
+
+                            }
+                        }*@
+
+                    @if (@User.GetSpecificClaim("Name") == item.Trainer)
+                    {
+                        <a class="btn default btn-xs red remove" data-username="@item.Id" title="Remove user"> <span class="glyphicon glyphicon-pencil"></span></a>
+
+                    }
+                </td>
+
+            </tr>
         }
     </tbody>
 </table>

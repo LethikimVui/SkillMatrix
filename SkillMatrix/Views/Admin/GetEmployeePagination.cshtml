@@ -1,4 +1,7 @@
-﻿<div class="container">
+﻿
+@model SharedObjects.ViewModels.UpdateEmployeeViewModel
+
+<div class="container-fluid">
     <div class="row">
 
         <div class="col-md-12">
@@ -6,40 +9,47 @@
             <!-- BEGIN EXAMPLE TABLE PORTLET-->
             <div class="portlet light" style="height:700px">
                 <div class="portlet-title">
-
-                    <div class="caption col-md-12">
-                        <span class="caption-subject font-green-sharp bold uppercase">
-                            Manage articles
-                        </span>
-                    </div>
-
                     <div class="portlet-body">
-
                         <div class="table-toolbar">
-
                             <div class="col-md-2 col-sm-12 col-xs-12 pull-left">
                                 <a class="btn btn-success" target="_blank" href="/Account/add" id="btn-add">Create new</a>
 
                             </div>
+                        </div>
+                    </div>
+                    <div class="caption col-md-12">
+                        <span class="caption-subject font-green-sharp bold uppercase">
+                            Search Employee
+                        </span>
+                    </div>
+                    <div class="portlet-body">
 
+                        <div class="table-toolbar">
+                            <form class="modal-body" id="frm-save">
+                                <div class="col-md-3 pull-left">
+                                    <label class="text-center bold font-green-sharp" for="txt-SAP">SAP/Email/Name</label>
+                                    <input type="text" class="form-control" id="txt-search" data-search="search" name="SAP" style="color:mediumvioletred">
+                                </div>
+
+                                <div class="col-md-4  pull-left">
+                                    <a class="btn btn-success" id="btn-search">Search</a>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
 
-                <div class="table-responsive col-md-12 table-responsive" style="height:500px">
+                <div class="table-responsive col-md-12 table-responsive" style="height:250px">
                     <table class="table table-bordered table-hover table-striped ">
                         <thead>
                             <tr class="text-center">
-
                                 <td>SAP</td>
                                 <td>Name</td>
                                 <td>Workcell</td>
                                 <td>Position</td>
                                 <td>Sector</td>
                                 <td>Image</td>
-
                                 <td>Utilities</td>
-
                             </tr>
                         </thead>
                         <tbody id="table-content">
@@ -57,7 +67,74 @@
 </div>
 
 
+<!--Modal arear-->
+
+
+<div class="modal-area">
+
+    <div class="modal fade" id="modal-add" tabindex="-1" role="columnheader" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+
+                <form enctype="multipart/form-data" asp-action="Update" method="post" style="height:100px !important">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+
+                            <label asp-for="Image" class="custom-file-label" for="customFile">Choose file</label>
+                            <input asp-for="Image" class="custom-file-input" id="customFile">
+                            <span asp-validation-for="Image" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group"> 
+                            <input type="submit" id="btn-save" value="Create" class="btn btn-default" />
+                        </div>
+                    </div>
+
+                </form>
+
+
+
+                @*<div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                    <h4 class="modal-title">Update User </h4>
+                    <p hidden id="hid-id"></p>
+                </div>
+                <form class="modal-body" id="frm-save">
+                    <div class="form-group">
+                        <label class="control-label">SAP</label>
+                        <input class="form-control" id="txt-sap" />
+                        <span asp-validation-for="SAP" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Image" class="custom-file-label"></label>
+                        <input asp-for="Image" class="custom-file-input" id="txt-image" />
+                        <span asp-validation-for="Image" class="text-danger"></span>
+                    </div>
+                </form>
+                <div class="modal-footer">
+                    <button type="button" class="btn default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn blue" id="btn-save">Save</button>
+                </div>*@
+
+
+            </div>
+        </div>
+    </div>
+    <!--Kết thúc Modal update-->
+
+</div>
+
 @section Script{
+    <script type="text/javascript">
+        // Add the following code if you want the name of the file appear on select
+        $(".custom-file-input").on("change", function () {
+            var fileName = $(this).val().split("\\").pop();
+            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+        });</script>
 
     <script src="~/js/get-employee-pagination.js"></script>
 }

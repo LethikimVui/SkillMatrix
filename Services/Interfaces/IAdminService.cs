@@ -14,9 +14,12 @@ namespace Services.Interfaces
     {
         Task<List<VEmployee>> GetAll();
         Task<VEmployee> GetBySAP(string sap);
+        Task<List<VEmployee>> GetEmployeeBySAP(string sap);
         Task<ResponseResult> Add(AddEmployeeModel model);
         Task<List<VEmployee>> GetPagination(PaginationViewModel model);
         Task<int> Count();
+
+        Task<ResponseResult> Update(UpdateEmployeeModel model);
 
 
 

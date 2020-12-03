@@ -1,6 +1,7 @@
 ﻿$(document).ready(function () {
 
 
+
     var homeconfig = {
         pageSize: 3,
         pageIndex: 1
@@ -76,25 +77,6 @@
     }
 
     EmployeeTable.loadData();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

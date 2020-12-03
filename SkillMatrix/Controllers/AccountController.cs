@@ -60,6 +60,7 @@ namespace SkillMatrix.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(LoginViewModel model)
         {
+            ViewData["model"] = model;
 
             if (!ModelState.IsValid)
             {
@@ -83,6 +84,13 @@ namespace SkillMatrix.Controllers
                 ModelState.AddModelError(string.Empty, "Sai tên đăng nhập hoặc mật khẩu!");
                 return View(model);
             }
+        }
+
+
+        public async Task<IActionResult> Logout()
+        {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return Redirect("/Account/Login");
         }
     }
 }

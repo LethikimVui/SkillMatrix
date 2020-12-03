@@ -22,6 +22,7 @@ namespace SkillMatrix.Controllers
         }
         public IActionResult Add()
         {
+
             return View();
         }
         [HttpPost]

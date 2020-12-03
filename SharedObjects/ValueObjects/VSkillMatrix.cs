@@ -9,6 +9,7 @@ namespace SharedObjects.ValueObjects
 {
     public class VSkillMatrix
     {
+        public int Id { get; set; }
         public string Topic { get; set; }
         public string Trainer { get; set; }
         public int? Weight { get; set; }

@@ -41,6 +41,18 @@ namespace Services.Services
             return employees;
         }
 
+        public async Task<List<VEmployee>> GetEmployeeBySAP(string sap)
+        {
+            List<VEmployee> employee = new List<VEmployee>();
+
+            using (var response = await httpClient.GetAsync("api/employee/searchs/" + sap))
+            {
+                string apiResponse = await response.Content.ReadAsStringAsync();
+                employee = JsonConvert.DeserializeObject<List<VEmployee>>(apiResponse);
+            }
+            return employee;
+        }
+
         public async Task<VEmployee> GetBySAP(string sap)
         {
             VEmployee employee = new VEmployee();
@@ -74,6 +86,18 @@ namespace Services.Services
                 employees = JsonConvert.DeserializeObject<List<VEmployee>>(apiResponse);
             }
             return employees;
+        }
+
+        public async Task<ResponseResult> Update(UpdateEmployeeModel model)
+        {
+            ResponseResult responseResult = new ResponseResult();
+            StringContent content = new StringContent(JsonConvert.SerializeObject(model), Encoding.UTF8, "application/json");
+            using (var response = await httpClient.PostAsync("api/employee/update", content))
+            {
+                string apiResponse = await response.Content.ReadAsStringAsync();
+                responseResult = JsonConvert.DeserializeObject<ResponseResult>(apiResponse);
+            }
+            return responseResult;
         }
     }
 }

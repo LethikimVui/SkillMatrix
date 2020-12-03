@@ -25,7 +25,8 @@ namespace APISkillMatrix.Models
         public virtual DbQuery<VScore> VScore { get; set; }
         public virtual DbQuery<VSkillMatrix> VSkillMatrix { get; set; }
         public virtual DbQuery<VSector> VSector { get; set; }
-
+        
+        public virtual DbQuery<VTopicByTrainer> VTopicByTrainer { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

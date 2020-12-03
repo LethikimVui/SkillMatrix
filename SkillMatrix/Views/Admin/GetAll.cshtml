@@ -1,7 +1,8 @@
 ﻿@*@model List<SharedObjects.ValueObjects.VEmployee>*@
 @model IEnumerable<SharedObjects.ValueObjects.VEmployee>
-<!-- RenderBody()-->
+@using SharedObjects.Extensions
 
+<!-- RenderBody()-->
 
 <div class="container-fluid">
     <div class="row">
@@ -21,11 +22,15 @@
                     <div class="portlet-body">
 
                         <div class="table-toolbar">
+                            @if (@User.GetSpecificClaim("Name") == "vui")
+                            {
+                                <div class="col-md-2 col-sm-12 col-xs-12 pull-left">
+                                    <a class="btn btn-success" href="/admin/add" data-toggle="modal" id="btn-add">Create New</a>
 
-                            <div class="col-md-2 col-sm-12 col-xs-12 pull-left">
-                                <a class="btn btn-success" href="/admin/add" data-toggle="modal" id="btn-add">Create New</a>
+                                </div>
+                            }
 
-                            </div>
+
 
                         </div>
                     </div>

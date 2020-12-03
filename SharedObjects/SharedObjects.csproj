@@ -88,6 +88,7 @@
     <Compile Include="Common\ResponseResult.cs" />
     <Compile Include="Extensions\IdentityExtensions.cs" />
     <Compile Include="Models\AddEmployeeModel.cs" />
+    <Compile Include="Models\UpdateEmployeeModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StoreProcedures\SPEmployee.cs" />
     <Compile Include="StoreProcedures\SPSector.cs" />
@@ -97,12 +98,14 @@
     <Compile Include="ValueObjects\VScore.cs" />
     <Compile Include="ValueObjects\VSector.cs" />
     <Compile Include="ValueObjects\VSkillMatrix.cs" />
+    <Compile Include="ValueObjects\VTopicByTrainer.cs" />
     <Compile Include="ViewModels\AddEmployeeViewModel.cs" />
     <Compile Include="ViewModels\AddSectorViewModel.cs" />
     <Compile Include="ViewModels\CreateUserViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\PaginationViewModel.cs" />
     <Compile Include="ViewModels\SearchEmployeeViewModel.cs" />
+    <Compile Include="ViewModels\UpdateEmployeeViewModel.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

@@ -14,5 +14,6 @@ namespace SharedObjects.Extensions
             var claim = claimsPrincipal.Claims.FirstOrDefault(x => x.Type == claimType);
             return (claim != null) ? claim.Value : string.Empty;
         }
+
     }
 }

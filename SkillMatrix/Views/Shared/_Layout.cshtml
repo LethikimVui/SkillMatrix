@@ -1,6 +1,8 @@
 ﻿@using SharedObjects.Extensions
-
 @*dung de hien thi ten cua nguoi dang login*@
+@*@{
+    var model = ViewData["model"] as SharedObjects.ViewModels.LoginViewModel;
+}*@
 <!DOCTYPE html>
 <html lang="en">
 
@@ -31,11 +33,6 @@
     <link href="~/assets/admin/layout3/css/layout.css" rel="stylesheet" type="text/css">
     <link href="~/assets/admin/layout3/css/themes/default.css" rel="stylesheet" type="text/css" id="style_color">
     <link href="~/assets/admin/layout3/css/custom.css" rel="stylesheet" type="text/css">
-
-
-
-
-
 
     <!-- END THEME STYLES -->
     <link rel="shortcut icon" href="favicon.ico" />
@@ -113,51 +110,55 @@
                         <li>
                             <a href="/employee/getall">   <i class="icon-home"></i><span>IMIC</span> </a>
                         </li>
+                        @if (@User.GetSpecificClaim("Name") != "vui")
 
-                        <li class="menu-dropdown mega-menu-dropdown ">
-                            <a data-hover="megamenu-dropdown" data-close-others="true" data-toggle="dropdown" href="javascript:;" class="dropdown-toggle">
-                                QL.Chung <i class="fa fa-angle-down"></i>
-                            </a>
-                            <ul class="dropdown-menu" style="min-width: 250px">
-                                <li>
-                                    <div class="mega-menu-content">
-                                        <div class="row">
+                        {
+                            <li class="menu-dropdown mega-menu-dropdown ">
+                                <a data-hover="megamenu-dropdown" data-close-others="true" data-toggle="dropdown" href="javascript:;" class="dropdown-toggle">
+                                    @User.GetSpecificClaim("Name")<i class="fa fa-angle-down"></i>
+                                </a>
+                                <ul class="dropdown-menu" style="min-width: 250px">
+                                    <li>
+                                        <div class="mega-menu-content">
+                                            <div class="row">
 
-                                            <div class="col-md-12">
-                                                <ul class="mega-menu-submenu">
+                                                <div class="col-md-12">
+                                                    <ul class="mega-menu-submenu">
 
-                                                    <li>
-                                                        <a href="/noi-dung-trang" class="iconify">
-                                                            <i class="icon-pin"></i>
-                                                            Nội dung trang
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="/hinh-anh" class="iconify">
-                                                            <i class="icon-pin"></i>
-                                                            Video, hình ảnh
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="/thong-tin" class="iconify">
-                                                            <i class="icon-pin"></i>
-                                                            Thông tin
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="/mang-xa-hoi" class="iconify">
-                                                            <i class="icon-pin"></i>
-                                                            Mạng xã hội
-                                                        </a>
-                                                    </li>
-                                                </ul>
+                                                        <li>
+                                                            <a href="/noi-dung-trang" class="iconify">
+                                                                <i class="icon-pin"></i>
+                                                                Nội dung trang
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="/hinh-anh" class="iconify">
+                                                                <i class="icon-pin"></i>
+                                                                Video, hình ảnh
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="/thong-tin" class="iconify">
+                                                                <i class="icon-pin"></i>
+                                                                Thông tin
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="/mang-xa-hoi" class="iconify">
+                                                                <i class="icon-pin"></i>
+                                                                Mạng xã hội
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+
                                             </div>
-
                                         </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </li>
+                                    </li>
+                                </ul>
+                            </li>
+                        }
+
 
                         <li class="menu-dropdown mega-menu-dropdown ">
                             <a data-hover="megamenu-dropdown" data-close-others="true" data-toggle="dropdown" href="javascript:;" class="dropdown-toggle">
@@ -211,9 +212,9 @@
                                             <div class="col-md-12">
                                                 <ul class="mega-menu-submenu">
                                                     <li>
-                                                        <a href="/sector/add" class="iconify">
+                                                        <a href="/admin/SearchEmloyees" class="iconify">
                                                             <i class="icon-pin"></i>
-                                                            Add Sector
+                                                            search Employees By SAP
                                                         </a>
                                                     </li>
                                                     <li>
@@ -255,6 +256,12 @@
                                             <!--one menu-->
                                             <div class="col-md-12">
                                                 <ul class="mega-menu-submenu">
+                                                    <li>
+                                                        <a href="/Admin/ManageEmloyee" class="iconify">
+                                                            <i class="icon-pin"></i>
+                                                            Search Employee
+                                                        </a>
+                                                    </li>
                                                     <li>
                                                         <a href="/Admin/SearchEmloyee" class="iconify">
                                                             <i class="icon-pin"></i>

@@ -22,5 +22,17 @@ namespace Services.Services
             }
             return skillmatrix;
         }
+
+        public async Task<List<VTopicByTrainer>> GetTopicByTrainerNTID(string sap)
+        {
+            List<VTopicByTrainer> skillmatrix = new List<VTopicByTrainer>();
+
+            using (var response = await httpClient.GetAsync("api/SkilMatrix/gettopicbyntid/" + sap))
+            {
+                string apiResponse = await response.Content.ReadAsStringAsync();
+                skillmatrix = JsonConvert.DeserializeObject<List<VTopicByTrainer>>(apiResponse);
+            }
+            return skillmatrix;
+        }
     }
 }

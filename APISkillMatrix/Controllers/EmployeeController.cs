@@ -35,6 +35,7 @@ namespace APISkillMatrix.Controllers
             return result;
         }
 
+
         [HttpGet("count")]
         public async Task<int> Count()
         {
@@ -58,13 +59,23 @@ namespace APISkillMatrix.Controllers
         }
 
 
+        [HttpGet("searchs/{sap}")]
+        public async Task<List<VSearchResult>> GetEmployeeBySAP(string sap)
+        {
+            var result = await context.Query<VSearchResult>().AsNoTracking().FromSql(SPEmployee.GetBySAP, sap).ToListAsync();
+
+            return result;
+        }
         [HttpGet("search/{sap}")]
+
         public async Task<VSearchResult> GetBySAP(string sap)
         {
             var result = await context.Query<VSearchResult>().AsNoTracking().FromSql(SPEmployee.GetBySAP, sap).FirstOrDefaultAsync();
 
             return result;
         }
+
+
         [HttpGet("getscore/{sap}")]
         public async Task<List<VScore>> GetScoreBySAP(string sap)
         {
@@ -77,7 +88,7 @@ namespace APISkillMatrix.Controllers
         {
             try
             {
-                await context.Database.ExecuteSqlCommandAsync(SPEmployee.AddEmployee, model.Sap, model.Name, model.SuperiorEmail, model.Email, model.Workcell,model.Position, model.Sector, model.Image);
+                await context.Database.ExecuteSqlCommandAsync(SPEmployee.AddEmployee, model.Sap, model.Name, model.SuperiorEmail, model.Email, model.Workcell, model.Position, model.Sector, model.Image);
                 return Ok(new ResponseResult(200));
             }
             catch (Exception ex)
@@ -86,6 +97,20 @@ namespace APISkillMatrix.Controllers
                 return BadRequest(new ResponseResult(400, ex.Message));
             }
         }
+        [HttpPost("update")]
+        public async Task<IActionResult> Update([FromBody] UpdateEmployeeModel model)
+        {
+            try
+            {
+                await context.Database.ExecuteSqlCommandAsync(SPEmployee.Update, model.Image, model.SAP);
+                return Ok(new ResponseResult(200));
+            }
 
+            catch (Exception ex)
+            {
+                return BadRequest(new ResponseResult(400, ex.Message));
+
+            }
+        }
     }
 }

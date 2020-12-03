@@ -14,8 +14,10 @@ namespace SharedObjects.StoreProcedures
         public static string AddEmployee = "SP_CreateEmployeeProfile @p0,@p1,@p2,@p3,@p4,@p5,@p6,@p7";
         public static string CountEmployee = "SP_CountEmployee @p0 OUT";
         public static string GetEmployeePagination = "SP_GetEmployeePagination @p0,@p1";
+        public static string Update = "SP_UpdateEmployeeImage @p0,@p1";
+        public static string GetImageBySAP = "SP_GetImageBySAP @p0";
 
-
+        
 
     }
 }

@@ -1,0 +1,63 @@
+﻿@model List<SharedObjects.ValueObjects.VEmployee>
+
+
+<div class="table-responsive col-md-12">
+        <table class="table table-bordered table-hover table-striped table-responsive">
+            <thead>
+                <tr class="text-center bold font-green-sharp">
+
+                    <td>SAP</td>
+                    <td>Name</td>
+                    <td>Email</td>
+                    <td>Supperior Email</td>
+                    <td>Workcell</td>
+                    <td>Position</td>
+                    <td>Sector</td>
+                    <td>Image</td>
+                    <td>TotalWeight</td>
+                    <td>TotalAssesment</td>
+                    <td>Utilities</td>
+                </tr>
+            </thead>
+            <tbody id="table-content">
+                @foreach (var item in Model)
+                {
+                <tr class="text-center">
+                    <td>
+                        <span>@item.Sap</span>
+                    </td>
+                    <td>
+                        <span>@item.Name</span>
+                    </td>
+                    <td>
+                        <span>@item.Email</span>
+                    </td>
+                    <td>
+                        <span>@item.SuperiorEmail</span>
+                    </td>
+                    <td>
+                        <span>@item.Workcell</span>
+                    </td>
+                    <td>
+                        <span>@item.Position</span>
+                    </td>
+                    <td>
+                        <span>@item.Sector</span>
+                    </td>
+                    <td>
+                        <img style="width: auto; height: 60px" src="~/images/@item.Image" />
+                    </td>
+                    <td>
+                        <span>@item.TotalWeight</span>
+                    </td>
+                    <td>
+                        <span>@item.TotalAssesment</span>
+                    </td>
+                    <td id="utilities">
+                        <a class="btn default btn-xs red modify" id="evaluate" data-sap="@item.Sap" title="modify score"> <span class="glyphicon glyphicon-pencil"></span></a>
+                    </td>
+                </tr>
+                }
+                </tbody>
+        </table>
+    </div>

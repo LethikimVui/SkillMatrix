@@ -23,6 +23,14 @@ namespace APISkillMatrix.Controllers
         }
 
 
+        [HttpGet("gettopicbyntid/{sap}")]
+        public async Task<List<VTopicByTrainer>> GetTopicByTrainerNTID(string sap)
+        {
+        var result = await context.Query<VTopicByTrainer>().AsNoTracking().FromSql(SPSkillMatrix.GetTopicByTrainerNTID, sap).ToListAsync();
+
+            return result;
+        }
+
         [HttpGet("getskill/{sap}")]
         public async Task<List<VSkillMatrix>> GetSkill(string sap)
         {

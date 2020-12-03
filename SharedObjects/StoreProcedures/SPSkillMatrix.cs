@@ -9,6 +9,8 @@ namespace SharedObjects.StoreProcedures
     public class SPSkillMatrix
     {
         public static string SkillMatrix = "SP_SelectSkillMatrixBySector @p0";
+        public static string GetTopicByTrainerNTID = "SP_GetTopicByTrainerNTID @p0";
+        
 
     }
 }

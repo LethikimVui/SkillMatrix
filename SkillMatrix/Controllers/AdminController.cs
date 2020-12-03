@@ -23,12 +23,44 @@ namespace SkillMatrix.Controllers
             this.skillMatrixService = skillMatrixService;
             this.sectorService = sectorService;
         }
+
+
+        public async Task<IActionResult> Update([FromBody] UpdateEmployeeViewModel model)
+        {
+            string uniqueFileName = await UpdateImagesync(model);
+
+            UpdateEmployeeModel Image = new UpdateEmployeeModel
+            {
+                //SAP = model.SAP,               
+                Image = uniqueFileName,
+            };
+            var result = await adminService.Update(Image);
+            return Json(new { statusCode = result.StatusCode });
+        }
         public async Task<IActionResult> GetAll()
         {
 
             var employees = await adminService.GetAll();
+
             return View(employees);
         }
+
+        [HttpPost]
+
+     
+
+        public async Task<IActionResult> GetEmployeeBySAP(string sap)
+        {
+            var users = await adminService.GetEmployeeBySAP(sap);
+            return Json(new { result = users });
+        }
+
+        public async Task<IActionResult> GetBySAP(string sap)
+        {
+            var user = await adminService.GetBySAP(sap);
+            return Json(new { result = user });
+        }
+
         public IActionResult GetEmployeePagination()
         {
             return View();
@@ -39,6 +71,8 @@ namespace SkillMatrix.Controllers
             return PartialView(articles);
 
         }
+
+
         public async Task<IActionResult> Count()
         {
             var count = await adminService.Count();
@@ -48,22 +82,28 @@ namespace SkillMatrix.Controllers
         {
             return View();
         }
-
-        public async Task<IActionResult> GetBySAP(string sap)
+        public IActionResult SearchEmloyees()
         {
-            var users = await adminService.GetBySAP(sap);
-            return Json(new { result = users });
+            return View();
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> GetSkillMatrix(string sap)
+        {
+            var skills = await skillMatrixService.GetSkill(sap);
+            //var topics = await skillMatrixService.GetTopicByTrainerNTID("123");
+            
+            //ViewData["topics"] = topics;
+            return PartialView(skills);
         }
 
         [HttpPost]
-
-        public async Task<IActionResult> GetSkillMatrix(string sap)
+        public async Task<IActionResult> GetEmployeeBySAP_partialView(string sap)
         {
 
-            var skills = await skillMatrixService.GetSkill(sap);
-            //return Json(new { result = skills });
-
-            return PartialView(skills);
+            var users = await adminService.GetEmployeeBySAP(sap);
+            return PartialView(users);
         }
         [HttpGet]
         public async Task<IActionResult> Add()
@@ -130,7 +170,28 @@ namespace SkillMatrix.Controllers
             return fileName;
         }
 
-   
 
+        private async Task<string> UpdateImagesync(UpdateEmployeeViewModel model)
+        {
+            string fileName;
+            try
+            {
+                var extension = "." + model.Image.FileName.Split('.')[model.Image.FileName.Split('.').Length - 1];
+                fileName = Guid.NewGuid().ToString() + extension; //Create a new Name for the file due to security reasons.
+                var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\images", fileName);
+                //var path = Path.Combine(Directory.GetCurrentDirectory(), "C:\\inetpub\\wwwroot\\ImageASPNETCore\\publish\\wwwroot\\images", fileName);
+
+
+                using (var bits = new FileStream(path, FileMode.Create))
+                {
+                    await model.Image.CopyToAsync(bits);
+                }
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
+            return fileName;
+        }
     }
 }
