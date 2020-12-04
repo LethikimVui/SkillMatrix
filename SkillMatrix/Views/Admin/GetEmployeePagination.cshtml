@@ -39,7 +39,7 @@
                     </div>
                 </div>
 
-                <div class="table-responsive col-md-12 table-responsive" style="height:250px">
+                <div id="table-content" class="table-responsive col-md-12 table-responsive" style="height:250px">
                     <table class="table table-bordered table-hover table-striped ">
                         <thead>
                             <tr class="text-center">
@@ -67,66 +67,6 @@
 </div>
 
 
-<!--Modal arear-->
-
-
-<div class="modal-area">
-
-    <div class="modal fade" id="modal-add" tabindex="-1" role="columnheader" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-
-
-                <form enctype="multipart/form-data" asp-action="Update" method="post" style="height:100px !important">
-                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-
-                    <div class="col-md-6">
-                        <div class="form-group">
-
-                            <label asp-for="Image" class="custom-file-label" for="customFile">Choose file</label>
-                            <input asp-for="Image" class="custom-file-input" id="customFile">
-                            <span asp-validation-for="Image" class="text-danger"></span>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group"> 
-                            <input type="submit" id="btn-save" value="Create" class="btn btn-default" />
-                        </div>
-                    </div>
-
-                </form>
-
-
-
-                @*<div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                    <h4 class="modal-title">Update User </h4>
-                    <p hidden id="hid-id"></p>
-                </div>
-                <form class="modal-body" id="frm-save">
-                    <div class="form-group">
-                        <label class="control-label">SAP</label>
-                        <input class="form-control" id="txt-sap" />
-                        <span asp-validation-for="SAP" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Image" class="custom-file-label"></label>
-                        <input asp-for="Image" class="custom-file-input" id="txt-image" />
-                        <span asp-validation-for="Image" class="text-danger"></span>
-                    </div>
-                </form>
-                <div class="modal-footer">
-                    <button type="button" class="btn default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn blue" id="btn-save">Save</button>
-                </div>*@
-
-
-            </div>
-        </div>
-    </div>
-    <!--Kết thúc Modal update-->
-
-</div>
 
 @section Script{
     <script type="text/javascript">

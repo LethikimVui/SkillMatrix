@@ -99,5 +99,30 @@ namespace Services.Services
             }
             return responseResult;
         }
+
+        public async Task<List<VEmployee>> GetPaginationWithCondition(PaginationConditionViewModel model)
+        {
+            StringContent content = new StringContent(JsonConvert.SerializeObject(model), Encoding.UTF8, "application/json");
+            List<VEmployee> employees = new List<VEmployee>();
+
+            using (var response = await httpClient.PostAsync("api/employee/paginationwithcondition", content))
+            {
+                string apiResponse = await response.Content.ReadAsStringAsync();
+                employees = JsonConvert.DeserializeObject<List<VEmployee>>(apiResponse);
+            }
+            return employees;
+        }
+
+        public async Task<int> CountEmployeeWithCondition(string input)
+        {
+            int count = 0;
+
+            using (var response = await httpClient.GetAsync("api/employee/countemployeewithcondition/" + input))
+            {
+                string apiResponse = await response.Content.ReadAsStringAsync();
+                count = JsonConvert.DeserializeObject<int>(apiResponse);
+            }
+            return count;
+        }
     }
 }

@@ -103,6 +103,7 @@
     <Compile Include="ViewModels\AddSectorViewModel.cs" />
     <Compile Include="ViewModels\CreateUserViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\PaginationConditionViewModel.cs" />
     <Compile Include="ViewModels\PaginationViewModel.cs" />
     <Compile Include="ViewModels\SearchEmployeeViewModel.cs" />
     <Compile Include="ViewModels\UpdateEmployeeViewModel.cs" />

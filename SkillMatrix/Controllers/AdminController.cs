@@ -67,17 +67,27 @@ namespace SkillMatrix.Controllers
         }
         public async Task<IActionResult> Pagination_PartialView([FromBody] PaginationViewModel model)
         {
-            var articles = await adminService.GetPagination(model);
-            return PartialView(articles);
-
+            var employees = await adminService.GetPagination(model);
+            return PartialView(employees);
         }
-
-
+        [HttpPost]
+        public async Task<IActionResult> GetPaginationWithCondition([FromBody] PaginationConditionViewModel model)
+        {
+            var employees = await adminService.GetPaginationWithCondition(model);
+            return PartialView(employees);
+        }
         public async Task<IActionResult> Count()
         {
             var count = await adminService.Count();
             return Json(new { result = count });
         }
+        [HttpPost]
+        public async Task<IActionResult> CountEmployeeWithCondition(string input)
+        {
+            var count = await adminService.CountEmployeeWithCondition(input);
+            return Json(new { result = count });
+        }
+
         public IActionResult SearchEmloyee()
         {
             return View();
@@ -101,7 +111,6 @@ namespace SkillMatrix.Controllers
         [HttpPost]
         public async Task<IActionResult> GetEmployeeBySAP_partialView(string sap)
         {
-
             var users = await adminService.GetEmployeeBySAP(sap);
             return PartialView(users);
         }

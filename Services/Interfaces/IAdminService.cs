@@ -18,7 +18,8 @@ namespace Services.Interfaces
         Task<ResponseResult> Add(AddEmployeeModel model);
         Task<List<VEmployee>> GetPagination(PaginationViewModel model);
         Task<int> Count();
-
+        Task<List<VEmployee>> GetPaginationWithCondition(PaginationConditionViewModel model);
+        Task<int> CountEmployeeWithCondition(string input);
         Task<ResponseResult> Update(UpdateEmployeeModel model);
 
 

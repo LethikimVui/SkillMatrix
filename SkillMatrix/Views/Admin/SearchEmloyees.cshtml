@@ -33,6 +33,30 @@
                         </div>
                     </div>
                 </div>
+                <div class="table-responsive col-md-12 table-responsive" style="height:180px">
+                    <table class="table table-bordered table-hover table-striped ">
+                        <thead>
+                            <tr class="text-center">
+                                <td>SAP</td>
+                                <td>Name</td>
+                                <td>Email</td>
+                                <td>Workcell</td>
+                                <td>Position</td>
+                                <td>Sector</td>
+                                <td>Supperior Email</td>
+                                <td>Image</td>
+                                <td>TotalWeight</td>
+                                <td>TotalAssesment</td>
+                                <td>Utilities</td>
+                            </tr>
+                        </thead>
+                        <tbody id="table-content">
+                        </tbody>
+                    </table>
+                </div>
+                <div class="pagination" id="pagination">
+                </div>
+
 
                 <div class="table-responsive col-md-12" id="table-employees">
 
@@ -56,7 +80,7 @@
                                 <td>Utilities</td>
                             </tr>
                         </thead>
-                        <tbody id="table-content">
+                        <tbody id="table-content1">
                             <tr class="text-center">
                                 <td id="sap"></td>
                                 <td id="name"></td>
@@ -78,6 +102,10 @@
                 <div class="table-responsive col-md-12" id="table-matrix">
 
                 </div>
+
+
+
+
             </div>
 
         </div>
@@ -87,7 +115,8 @@
 </div>
 
 @section Script{
-    <script src="~/js/searchEmployees.js"></script>
+    @*<script src="~/js/searchEmployees.js"></script>*@
+    <script src="~/js/searchEmployeesPagination.js"></script>
 }
 
 

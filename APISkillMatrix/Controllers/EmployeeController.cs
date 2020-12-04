@@ -50,11 +50,33 @@ namespace APISkillMatrix.Controllers
             return result;
 
         }
+        [HttpGet("countemployeewithcondition/{input}")]
+        public async Task<int> CountEmployeeWithCondition(string input)
+        {
+            var output = new SqlParameter
+            {
+                DbType = DbType.Int32,
+                Direction = ParameterDirection.Output
+            };
+
+            await context.Database.ExecuteSqlCommandAsync(SPEmployee.CountEmployeeWithCondition, input, output);
+            var result = (int)output.Value;
+            return result;
+
+        }
+
         [HttpPost("pagination")]
         public async Task<List<VEmployee>> GetPagination([FromBody] PaginationViewModel model)
         {
             var result = await context.Query<VEmployee>().AsNoTracking().FromSql(SPEmployee.GetEmployeePagination, model.PageIndex, model.PageSize).ToListAsync();
 
+            return result;
+        }
+
+        [HttpPost("paginationwithcondition")]
+        public async Task<List<VEmployee>> GetPaginationWithCondition([FromBody] PaginationConditionViewModel model)
+        {
+            var result = await context.Query<VEmployee>().AsNoTracking().FromSql(SPEmployee.GetEmployeePaginationWithCondition, model.Input, model.PageIndex, model.PageSize).ToListAsync();
             return result;
         }
 
