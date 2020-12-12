@@ -1,0 +1,18 @@
+﻿@model List<SharedObjects.ValueObjects.VSkillMatrix>
+@foreach (var item in Model)
+{
+    <tr class="text-center">
+
+        <td>@item.Topic</td>
+        <td>@item.Topic</td>
+        <td>@item.Topic</td>
+        <td>@item.Topic</td>
+        <td>@item.Trainer</td>
+        <td>@item.Evaluator</td>
+        <td class="text-center">
+
+            <a id="edit" class="btn default btn-xs purple update" data-toggle="modal" data-sap="@item.Id" title="Edit"> <span class="glyphicon glyphicon-edit"></span></a>
+
+        </td>
+    </tr>
+}

@@ -9,12 +9,14 @@
     <td>@item.Workcell</td>
     <td>@item.Sector</td>
     <td>@item.Position</td>
+    <td>@item.TotalWeight</td>
+    <td>@item.TotalAssesment</td>
 
     <td><img style="width: 100px; height: auto" src="~/images/@item.Image" /></td>
 
     <td class="text-center">
 
-        <a class="btn default btn-xs purple update" data-toggle="modal" href="#modal-add" data-sap="@item.Sap" title="Update"> <span class="glyphicon glyphicon-edit"></span></a>
+        <a class="btn default btn-xs purple update" data-toggle="modal" href="#modal-add" data-sap="@item.Sap" title="Evaluate"> <span class="glyphicon glyphicon-edit"></span></a>
 
         <a class="btn default btn-xs red delete"><span class="glyphicon glyphicon-trash" title="Delete"></span></a>
     </td>

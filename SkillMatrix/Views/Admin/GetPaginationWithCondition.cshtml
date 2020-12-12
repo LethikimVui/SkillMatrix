@@ -1,24 +1,45 @@
 ﻿@model List<SharedObjects.ValueObjects.VEmployee>
-@foreach (var item in Model)
-{
-<tr class="text-center">
 
-    <td>@item.Sap</td>
-    <td>@item.Name</td>
-    <td>@item.Email</td>
-    <td>@item.Workcell</td>
-    <td>@item.Position</td>
-    <td>@item.Sector</td>
-    <td>@item.SuperiorEmail</td>
+    <table class="table table-bordered table-hover table-striped ">
+        <thead>
+            <tr class="text-center">
+                <td>SAP</td>
+                <td>Name</td>
+                <td>Email</td>
+                <td>Workcell</td>
+                <td>Position</td>
+                <td>Sector</td>
+                <td>Supperior Email</td>
+                <td>Image</td>
+                <td>TotalWeight</td>
+                <td>TotalAssesment</td>
+                <td>Utilities</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr class="text-center">
 
-    <td><img style="width: 100px; height: auto" src="~/images/@item.Image" /></td>
-    <td>@item.TotalAssesment</td>
-    <td>@item.TotalWeight</td>
-    <td class="text-center">
+                    <td>@item.Sap</td>
+                    <td>@item.Name</td>
+                    <td>@item.Email</td>
+                    <td>@item.Workcell</td>
+                    <td>@item.Position</td>
+                    <td>@item.Sector</td>
+                    <td>@item.SuperiorEmail</td>
 
-        <a id="evaluate" class="btn default btn-xs purple update" data-toggle="modal" data-sap="@item.Sap" title="Update"> <span class="glyphicon glyphicon-edit"></span></a>
+                    <td><img style="width: 100px; height: auto" src="~/images/@item.Image" /></td>
+                    <td>@item.TotalWeight</td>
+                    <td>@item.TotalAssesment</td>
+                    <td class="text-center">
 
-        <a class="btn default btn-xs red delete"><span class="glyphicon glyphicon-trash" title="Delete"></span></a>
-    </td>
-</tr>
-}
+                        <a id="evaluate" class="btn default btn-xs purple update" data-toggle="modal" data-sap="@item.Sap" title="Evaluate"> <span class="glyphicon glyphicon-edit"></span></a>
+
+                        <a class="btn default btn-xs red delete"><span class="glyphicon glyphicon-trash" title="Delete"></span></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+   

@@ -1,0 +1,31 @@
+﻿@model SharedObjects.ValueObjects.VEmployee
+
+
+<table class="table table-bordered table-hover table-striped table-responsive">
+    <thead>
+        <tr class="text-center bold font-green-sharp">
+            <td>SAP</td>
+            <td>Name</td>
+            <td>Email</td>
+            <td>Supperior Email</td>
+            <td>Workcell</td>
+            <td>Position</td>
+            <td>Sector</td>
+            <td>TotalWeight</td>
+            <td>TotalAssesment</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="text-center">
+            <td>@Model.Sap</td>
+            <td>@Model.Name</td>
+            <td>@Model.Email</td>
+            <td>@Model.SuperiorEmail</td>
+            <td>@Model.Workcell</td>
+            <td>@Model.Position</td>
+            <td>@Model.Sector</td>
+            <td>@Model.TotalWeight</td>
+            <td>@Model.TotalAssesment</td>
+        </tr>
+    </tbody>
+</table>

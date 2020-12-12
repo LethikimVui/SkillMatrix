@@ -24,7 +24,11 @@ namespace SkillMatrix.Controllers
             this.sectorService = sectorService;
         }
 
-
+        public async Task<IActionResult> UpdateScore([FromBody] UpdateScoreViewModel model)
+        {
+            var result = await skillMatrixService.UpdateScore(model);
+            return Json(new { statusCode = result.StatusCode });
+        }
         public async Task<IActionResult> Update([FromBody] UpdateEmployeeViewModel model)
         {
             string uniqueFileName = await UpdateImagesync(model);
@@ -39,15 +43,11 @@ namespace SkillMatrix.Controllers
         }
         public async Task<IActionResult> GetAll()
         {
-
             var employees = await adminService.GetAll();
-
             return View(employees);
         }
 
-        [HttpPost]
-
-     
+        [HttpPost]    
 
         public async Task<IActionResult> GetEmployeeBySAP(string sap)
         {
@@ -61,10 +61,17 @@ namespace SkillMatrix.Controllers
             return Json(new { result = user });
         }
 
+        public async Task<IActionResult> GetBySAP_partialview(string sap)
+        {
+            var user = await adminService.GetBySAP(sap);
+            return PartialView(user);
+        }
+
         public IActionResult GetEmployeePagination()
         {
             return View();
         }
+       
         public async Task<IActionResult> Pagination_PartialView([FromBody] PaginationViewModel model)
         {
             var employees = await adminService.GetPagination(model);
@@ -75,6 +82,12 @@ namespace SkillMatrix.Controllers
         {
             var employees = await adminService.GetPaginationWithCondition(model);
             return PartialView(employees);
+        }
+        [HttpPost]
+        public async Task<IActionResult> GetSkillPagination([FromBody] PaginationConditionViewModel model)
+        {
+            var skills = await skillMatrixService.GetPaginationWithCondition(model);
+            return PartialView(skills);
         }
         public async Task<IActionResult> Count()
         {
@@ -87,7 +100,12 @@ namespace SkillMatrix.Controllers
             var count = await adminService.CountEmployeeWithCondition(input);
             return Json(new { result = count });
         }
-
+        [HttpPost]
+        public async Task<IActionResult> CountSkillMatrix(string input)
+        {
+            var count = await skillMatrixService.CountSkillMatrix(input);
+            return Json(new { result = count });
+        }
         public IActionResult SearchEmloyee()
         {
             return View();
@@ -97,7 +115,10 @@ namespace SkillMatrix.Controllers
             return View();
         }
 
-
+        public IActionResult SearchEmloyeesAndEvaluate()
+        {
+            return View();
+        }
         [HttpPost]
         public async Task<IActionResult> GetSkillMatrix(string sap)
         {

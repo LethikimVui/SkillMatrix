@@ -1,4 +1,6 @@
-﻿using SharedObjects.ValueObjects;
+﻿using SharedObjects.Common;
+using SharedObjects.ValueObjects;
+using SharedObjects.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +13,10 @@ namespace Services.Interfaces
     {
         Task<List<VSkillMatrix>> GetSkill(string sap);
         Task<List<VTopicByTrainer>> GetTopicByTrainerNTID(string sap);
+        Task<List<VSkillMatrix>> GetPaginationWithCondition(PaginationConditionViewModel model);
+        Task<int> CountSkillMatrix(string input);
+        Task<ResponseResult> UpdateScore(UpdateScoreViewModel model);
 
-        
+
     }
 }

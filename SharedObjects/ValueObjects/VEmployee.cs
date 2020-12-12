@@ -26,10 +26,10 @@ namespace SharedObjects.ValueObjects
         [Display(Name = "Image")]
         public string Image { get; set; }
         [Display(Name = "Total Weight")]
-        public long? TotalWeight { get; set; }
+        public int? TotalWeight { get; set; }
         [Display(Name = "Total Assesment")]
-        public long? TotalAssesment { get; set; }
+        public int? TotalAssesment { get; set; }
         [Display(Name = "Final Assessment Score")]
-        public decimal? FinalAssessmentScore { get; set; }
+        public int? FinalAssessmentScore { get; set; }
     }
 }

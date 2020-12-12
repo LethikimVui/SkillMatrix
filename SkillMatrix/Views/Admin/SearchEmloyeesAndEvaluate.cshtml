@@ -1,0 +1,112 @@
+﻿@model List<SharedObjects.ValueObjects.VSearchResult>
+<!-- RenderBody()-->
+
+<div class="container-fluid">
+    <div class="row">
+
+        <div class="col-md-12">
+
+            <!-- BEGIN EXAMPLE TABLE PORTLET-->
+            <div class="portlet light" style="height:2000px">
+                <div class="portlet-title">
+
+                    <div class="caption col-md-12">
+                        <span class="caption-subject font-green-sharp bold uppercase">
+                            Search Employee
+                        </span>
+                    </div>
+
+                    <div class="portlet-body">
+                        <div class="table-toolbar">
+                            <form class="modal-body" id="frm-save">
+
+                                <div class="col-md-3 pull-left">
+                                    <label class="text-center bold font-green-sharp" for="txt-SAP">SAP/Email/Name</label>
+                                    <input type="text" class="form-control" id="txt-search" data-search="search" name="SAP" style="color:mediumvioletred">
+                                </div>
+
+                                <div class="col-md-4  pull-left">
+                                    <a class="btn btn-success" id="btn-search">Search</a>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div id="table-content" class="table-responsive col-md-12 table-responsive" style="height:180px">
+
+                </div>
+                <div class="pagination" id="pagination">
+                </div>
+
+
+                <div id="employeeinfo_partialview" class="table-responsive col-md-12">
+                  
+                </div>
+
+
+                <div id="table-matrix" class="table-responsive col-md-12 table-responsive" style="height:180px">
+
+                </div>
+                <div class="pagination_skill" id="pagination_skill">
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+<!--Modal arear-->
+
+<div class="modal-area">
+
+    <div class="modal fade" id="modal-evaluate" tabindex="-1" role="columnheader" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                    <h4 class="modal-title">Thêm mới, cập nhật khóa học </h4>
+                    <p hidden id="hid-id"></p>
+                </div>
+                <form class="modal-body" id="frm-save">
+
+                    <div class="form-group">
+                        <label for="txt-CourseName">Topic</label>
+                        <label for="txt-CourseName" id="txt-Topic"></label>
+                    </div>
+                    <div class="form-group">
+                        <label for="txt-Image">EvalScore</label>
+                        <input type="text" class="form-control" id="txt-EvalScore" name="Image">
+                    </div> 
+                    <div class="form-group">
+                        <label for="txt-Image">Date</label>
+                        <input type="date" class="form-control" id="txt-Date" name="Date">
+                    </div>
+
+
+                </form>
+                <div class="modal-footer">
+                    <button type="button" class="btn default" data-dismiss="modal">Đóng</button>
+                    <button type="button" class="btn blue" id="btn-save">Cập nhật</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Kết thúc Modal thêm, update-->
+
+</div>
+
+@section Script{
+    <script src="~/js/searchEmployeesPaginationAndEvaluate.js"></script>
+    @*<script src="~/js/searchSkillPagination.js"></script>*@
+}
+
+
+

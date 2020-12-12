@@ -16,7 +16,7 @@ namespace SharedObjects.ValueObjects
         public string Position { get; set; }
         public string Sector { get; set; }
         public string Image { get; set; }
-        public long? TotalWeight { get; set; }
-        public long? TotalAssesment { get; set; }
+        public int? TotalWeight { get; set; }
+        public int? TotalAssesment { get; set; }
     }
 }

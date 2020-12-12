@@ -106,6 +106,7 @@
     <Compile Include="ViewModels\PaginationConditionViewModel.cs" />
     <Compile Include="ViewModels\PaginationViewModel.cs" />
     <Compile Include="ViewModels\SearchEmployeeViewModel.cs" />
+    <Compile Include="ViewModels\UpdateScoreViewModel.cs" />
     <Compile Include="ViewModels\UpdateEmployeeViewModel.cs" />
   </ItemGroup>
   <ItemGroup />
