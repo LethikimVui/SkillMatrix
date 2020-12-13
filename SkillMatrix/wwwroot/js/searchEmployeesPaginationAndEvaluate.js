@@ -3,6 +3,8 @@ $(document).ready(function () {
     $('body').off('click', '#btn-search').on('click', '#btn-search', Search);
     //$('body').off('click', '#evaluate').on('click', '#evaluate', LoadEmployeeInfo);
     $('body').off('click', '#evaluate').on('click', '#evaluate', LoadEmployeeInfo_partialview);
+    $('body').off('click', '.score').on('click', '.score', LoadScore);
+    $('body').off('click', '#btn-save').on('click', '#btn-save', Save);
 
 
         
@@ -12,7 +14,12 @@ $(document).ready(function () {
         $('#pagination').html('');
         EmployeeTable.loadData();
     }
+    function LoadScore() {
 
+    }
+    function Save() {
+
+    }
     function LoadEmployeeInfo() {
         var _tranferSAP = $(this).data('sap'); //$('#txt-search').val();
         $.ajax({
@@ -21,7 +28,7 @@ $(document).ready(function () {
             dataType: 'json',
             data: { sap: _tranferSAP },
             success: function (response) {
-                LoadSkill1(_tranferSAP)
+                LoadSkill(_tranferSAP)
                 var data = response.result;
                 $('#sap').text(data.sap);
                 $('#name').text(data.name);
@@ -35,8 +42,6 @@ $(document).ready(function () {
             }
         })
     }
-
-
     function LoadEmployeeInfo_partialview() {
         var _tranferSAP = $(this).data('sap');
         debugger
@@ -45,13 +50,13 @@ $(document).ready(function () {
             url: '/admin/GetBySAP_partialview',
             data: { sap: _tranferSAP },
             success: function (response) {
-                LoadSkill1(_tranferSAP)
+                LoadSkill(_tranferSAP)
 
                 $('#employeeinfo_partialview').html(response);
             }
         })
     }
-    function LoadSkill() {
+    function LoadSkill1() {
         var _tranferSAP = $(this).data('sap');
         debugger
         $.ajax({
@@ -63,8 +68,7 @@ $(document).ready(function () {
             }
         })
     }
-
-    function LoadSkill1(_tranferSAP) {
+    function LoadSkill(_tranferSAP) {
         $.ajax({
             type: 'post',
             url: '/admin/GetSkillMatrix',
@@ -74,12 +78,10 @@ $(document).ready(function () {
             }
         })
     }
-
     var homeconfig = {
         pageSize: 2,
         pageIndex: 1
     }
-
     var EmployeeTable =
     {
         loadData: function (changePageSize) {
@@ -143,15 +145,10 @@ $(document).ready(function () {
             });
         },
     }
-
-
-
-
     var homeconfig_SkillMatrix = {
         pageSize: 2,
         pageIndex: 1
     }
-
     var SkillMatrixTable =
     {
         loadData: function (changePageSize) {

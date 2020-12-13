@@ -69,17 +69,21 @@ namespace APISkillMatrix.Controllers
            {
                 try
                 {
-                    await context.Database.ExecuteSqlCommandAsync(SPSkillMatrix.UpdateScore, model.Id, model.Sap, model.Topic, model.EvalScore, model.AssesScore);
+                    await context.Database.ExecuteSqlCommandAsync(SPSkillMatrix.UpdateScore, model.Id, model.Sap, model.EvalScore, model.AssesScore);
                     return Ok(new ResponseResult(200));
                 }
 
                 catch (Exception ex)
                 {
                     return BadRequest(new ResponseResult(400, ex.Message));
-
                 }
             }
         }
-
+        [HttpGet("getsingleresult")]
+        public async Task<VResult> GetSingleResult([FromBody] GetSingleResultViewModel model)
+        {
+            var result = await context.Query<VResult>().AsNoTracking().FromSql(SPSkillMatrix.GetSingleResult, model.NTID, model.TopicId).FirstOrDefaultAsync();
+            return result;
+        }
     }
 }

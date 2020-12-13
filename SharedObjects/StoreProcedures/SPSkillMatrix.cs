@@ -15,7 +15,9 @@ namespace SharedObjects.StoreProcedures
         public static string GetSkillMatrixPagination = "SP_GetSkillMatrixPagination @p0,@p1,@p2";
 
 
-        public static string UpdateScore = "SP_UpdateScore @p0,@p1,@p2,@p3,@p4";
+        public static string UpdateScore = "SP_UpdateScore @p0,@p1,@p2,@p3";
+        public static string GetSingleResult = "SP_GetSingleResult @p0,@p1";
+
 
 
         

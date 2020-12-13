@@ -98,6 +98,7 @@
     <Compile Include="ValueObjects\VScore.cs" />
     <Compile Include="ValueObjects\VSector.cs" />
     <Compile Include="ValueObjects\VSkillMatrix.cs" />
+    <Compile Include="ValueObjects\VResult.cs" />
     <Compile Include="ValueObjects\VTopicByTrainer.cs" />
     <Compile Include="ViewModels\AddEmployeeViewModel.cs" />
     <Compile Include="ViewModels\AddSectorViewModel.cs" />
@@ -106,6 +107,7 @@
     <Compile Include="ViewModels\PaginationConditionViewModel.cs" />
     <Compile Include="ViewModels\PaginationViewModel.cs" />
     <Compile Include="ViewModels\SearchEmployeeViewModel.cs" />
+    <Compile Include="ViewModels\GetSingleResultViewModel.cs" />
     <Compile Include="ViewModels\UpdateScoreViewModel.cs" />
     <Compile Include="ViewModels\UpdateEmployeeViewModel.cs" />
   </ItemGroup>

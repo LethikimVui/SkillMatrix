@@ -8,12 +8,10 @@ using System.Threading.Tasks;
 
 namespace SharedObjects.ViewModels
 {
-    public class UpdateScoreViewModel
+    public class GetSingleResultViewModel
     {
-        public int Id { get; set; }
-        public string Sap { get; set; }
-        public int? EvalScore { get; set; }
-        public int? AssesScore { get; set; }
+        public string NTID { get; set; }
+        public int TopicId { get; set; }
 
     }
 }

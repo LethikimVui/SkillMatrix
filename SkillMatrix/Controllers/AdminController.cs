@@ -128,7 +128,6 @@ namespace SkillMatrix.Controllers
             //ViewData["topics"] = topics;
             return PartialView(skills);
         }
-
         [HttpPost]
         public async Task<IActionResult> GetEmployeeBySAP_partialView(string sap)
         {
@@ -176,7 +175,6 @@ namespace SkillMatrix.Controllers
             }
             return View(model);
         }
-
         private async Task<string> UploadedFileAsync(AddEmployeeViewModel model)
         {
             string fileName;
@@ -199,8 +197,6 @@ namespace SkillMatrix.Controllers
             }
             return fileName;
         }
-
-
         private async Task<string> UpdateImagesync(UpdateEmployeeViewModel model)
         {
             string fileName;

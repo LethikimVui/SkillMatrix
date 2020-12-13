@@ -5,9 +5,6 @@
         var topics = ViewData["topics"] as IEnumerable<SharedObjects.ValueObjects.VTopicByTrainer>;
     }*@
 
-
-
-
 <table class="table table-bordered table-hover table-striped table-responsive">
     <thead>
         <tr class="text-center bold font-blue-sharp">
@@ -54,15 +51,13 @@
                         {
                             if (topic.Id == item.Id)
                             {
-
                                 <a class="btn default btn-xs red remove" data-username="@item.Id" title="Remove user"> <span class="glyphicon glyphicon-minus"></span></a>
-
                             }
                         }*@
 
                     @if (@User.GetSpecificClaim("Name") == item.Trainer)
                     {
-                        <a class="btn default btn-xs red remove" data-skillId="@item.Id" data-toggle="modal" href="#modal-evaluate" title="Score"> <span class="glyphicon glyphicon-pencil"></span></a>
+                        <a class="btn default btn-xs red score" data-skillId="@item.Id" data-toggle="modal" href="#modal-evaluate" title="Score"> <span class="glyphicon glyphicon-pencil"></span></a>
 
                     }
                 </td>
