@@ -57,7 +57,7 @@
 
                     @if (@User.GetSpecificClaim("Name") == item.Trainer)
                     {
-                        <a class="btn default btn-xs red score" data-skillId="@item.Id" data-toggle="modal" href="#modal-evaluate" title="Score"> <span class="glyphicon glyphicon-pencil"></span></a>
+                        <a class="btn default btn-xs red score" id="score" data-topicid="@item.Id" data-toggle="modal" href="#modal-evaluate" title="Score"> <span class="glyphicon glyphicon-pencil"></span></a>
 
                     }
                 </td>

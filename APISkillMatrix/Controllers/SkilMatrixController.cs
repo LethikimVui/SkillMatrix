@@ -69,7 +69,7 @@ namespace APISkillMatrix.Controllers
            {
                 try
                 {
-                    await context.Database.ExecuteSqlCommandAsync(SPSkillMatrix.UpdateScore, model.Id, model.Sap, model.EvalScore, model.AssesScore);
+                    await context.Database.ExecuteSqlCommandAsync(SPSkillMatrix.UpdateScore, model.Id, model.Sap, model.EvalScore, model.AssesScore, model.LatestEvaluatorId);
                     return Ok(new ResponseResult(200));
                 }
 
@@ -79,7 +79,7 @@ namespace APISkillMatrix.Controllers
                 }
             }
         }
-        [HttpGet("getsingleresult")]
+        [HttpPost("getsingleresult")]
         public async Task<VResult> GetSingleResult([FromBody] GetSingleResultViewModel model)
         {
             var result = await context.Query<VResult>().AsNoTracking().FromSql(SPSkillMatrix.GetSingleResult, model.NTID, model.TopicId).FirstOrDefaultAsync();

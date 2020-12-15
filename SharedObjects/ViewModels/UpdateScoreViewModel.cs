@@ -12,8 +12,9 @@ namespace SharedObjects.ViewModels
     {
         public int Id { get; set; }
         public string Sap { get; set; }
-        public int? EvalScore { get; set; }
-        public int? AssesScore { get; set; }
+        public int EvalScore { get; set; }
+        public int AssesScore { get; set; }
+        public int LatestEvaluatorId { get; set; }
 
     }
 }

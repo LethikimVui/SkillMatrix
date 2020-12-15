@@ -25,7 +25,6 @@ namespace Services.Services
             }
             return count;
         }
-
         public async Task<List<VSkillMatrix>> GetPaginationWithCondition(PaginationConditionViewModel model)
         {
             StringContent content = new StringContent(JsonConvert.SerializeObject(model), Encoding.UTF8, "application/json");
@@ -38,7 +37,17 @@ namespace Services.Services
             }
             return skilmatrix;
         }
-
+        public async Task<VResult> GetSingleResult(GetSingleResultViewModel model)
+        {
+            StringContent content = new StringContent(JsonConvert.SerializeObject(model), Encoding.UTF8, "application/json");
+            VResult result = new VResult();
+            using (var response = await httpClient.PostAsync("api/SkilMatrix/getsingleresult", content))
+            {
+                string apiResponse = await response.Content.ReadAsStringAsync();
+                result = JsonConvert.DeserializeObject<VResult>(apiResponse);
+            }
+            return result;
+        }
         public async Task<List<VSkillMatrix>> GetSkill(string sap)
         {
             List<VSkillMatrix> skillmatrix = new List<VSkillMatrix>();
@@ -50,7 +59,6 @@ namespace Services.Services
             }
             return skillmatrix;
         }
-
         public async Task<List<VTopicByTrainer>> GetTopicByTrainerNTID(string sap)
         {
             List<VTopicByTrainer> skillmatrix = new List<VTopicByTrainer>();
@@ -62,7 +70,6 @@ namespace Services.Services
             }
             return skillmatrix;
         }
-
         public async Task<ResponseResult> UpdateScore(UpdateScoreViewModel model)
         {
             ResponseResult responseResult = new ResponseResult();
@@ -74,8 +81,5 @@ namespace Services.Services
             }
             return responseResult;
         }
-
-
-
     }
 }

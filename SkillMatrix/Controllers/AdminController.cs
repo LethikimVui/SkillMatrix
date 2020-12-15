@@ -23,7 +23,12 @@ namespace SkillMatrix.Controllers
             this.skillMatrixService = skillMatrixService;
             this.sectorService = sectorService;
         }
-
+        [HttpPost]
+        public async Task<IActionResult> GetSingleResult([FromBody] GetSingleResultViewModel model)
+        {
+            var result1 = await skillMatrixService.GetSingleResult(model);
+            return Json(new { result = result1 });
+        }
         public async Task<IActionResult> UpdateScore([FromBody] UpdateScoreViewModel model)
         {
             var result = await skillMatrixService.UpdateScore(model);
@@ -47,8 +52,7 @@ namespace SkillMatrix.Controllers
             return View(employees);
         }
 
-        [HttpPost]    
-
+        [HttpPost]
         public async Task<IActionResult> GetEmployeeBySAP(string sap)
         {
             var users = await adminService.GetEmployeeBySAP(sap);
@@ -58,6 +62,7 @@ namespace SkillMatrix.Controllers
         public async Task<IActionResult> GetBySAP(string sap)
         {
             var user = await adminService.GetBySAP(sap);
+
             return Json(new { result = user });
         }
 
@@ -71,7 +76,7 @@ namespace SkillMatrix.Controllers
         {
             return View();
         }
-       
+
         public async Task<IActionResult> Pagination_PartialView([FromBody] PaginationViewModel model)
         {
             var employees = await adminService.GetPagination(model);
@@ -124,7 +129,7 @@ namespace SkillMatrix.Controllers
         {
             var skills = await skillMatrixService.GetSkill(sap);
             //var topics = await skillMatrixService.GetTopicByTrainerNTID("123");
-            
+
             //ViewData["topics"] = topics;
             return PartialView(skills);
         }
@@ -156,7 +161,7 @@ namespace SkillMatrix.Controllers
                     SuperiorEmail = model.SuperiorEmail,
                     Email = model.Email,
                     Workcell = model.Workcell,
-                    Position=model.Position,
+                    Position = model.Position,
                     Sector = model.Sector,
                     Image = uniqueFileName,
                 };

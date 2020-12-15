@@ -3,11 +3,9 @@ $(document).ready(function () {
     $('body').off('click', '#btn-search').on('click', '#btn-search', Search);
     //$('body').off('click', '#evaluate').on('click', '#evaluate', LoadEmployeeInfo);
     $('body').off('click', '#evaluate').on('click', '#evaluate', LoadEmployeeInfo_partialview);
-    $('body').off('click', '.score').on('click', '.score', LoadScore);
+    $('body').off('click', '#score').on('click', '#score', LoadScore);
     $('body').off('click', '#btn-save').on('click', '#btn-save', Save);
 
-
-        
     function Search() {
         $('#employeeinfo_partialview').html('');
         $('#table-matrix').html('');
@@ -15,10 +13,63 @@ $(document).ready(function () {
         EmployeeTable.loadData();
     }
     function LoadScore() {
+       
+        var model = new Object();
+        model.NTID =$("#id1").data('w'); //var _tranferSAP = $(this).data('sap');
+        model.TopicId = $(this).attr('data-topicid');
+        debugger
+        $.ajax({
+            type: 'post',
+            url: '/admin/GetSingleResult',
+            dataType: 'json',
+            data: JSON.stringify(model),
+            contentType: "application/json; charset=utf-8",
 
+            success: function (response) {
+                var data = response.result;
+                $('#txt-topicid').val(model.TopicId) //(data.id);
+                $('#txt-Topic').val(model.NTID) // (data.topic);
+                $('#txt-ntid').val(data.ntid);
+                $('#txt-latestEvaluatorName').val(data.latestEvaluatorName);
+                $('#txt-EvalScore').val(data.evalScore);
+                $('#txt-assessScore').val(data.assessScore);
+            }
+        })
     }
     function Save() {
+        if ($('#frm-save').valid()) {
+            var model = new Object();
+            debugger
+            model.Id = $('#txt-topicid').val();
+            model.Sap = $('#txt-ntid').val();
+            model.EvalScore = $('#txt-EvalScore').val();
+            model.AssesScore = $('#txt-assessScore').val();
+            model.LatestEvaluatorId = 10;
 
+            $.ajax({
+                type: 'post',
+                url: '/admin/UpdateScore',
+                dataType: 'json',
+                data: JSON.stringify(model),
+                contentType: "application/json; charset=utf-8",
+                success: function (response) {
+
+                    if (response.statusCode == 200) {
+                        bootbox.alert("Update successfully!", function () {
+                            $('#modal-add').modal('hide')
+                            location.reload()
+                        })
+                    }
+                    else if (response.statusCode == 400) {
+                        bootbox.alert("404")
+                    }
+                    else {
+                        bootbox.alert("Update Error!")
+                    }
+                }
+            })
+            $('#modal-add').modal('hide');
+        }
     }
     function LoadEmployeeInfo() {
         var _tranferSAP = $(this).data('sap'); //$('#txt-search').val();
@@ -50,7 +101,7 @@ $(document).ready(function () {
             url: '/admin/GetBySAP_partialview',
             data: { sap: _tranferSAP },
             success: function (response) {
-                LoadSkill(_tranferSAP)
+                LoadSkill(_tranferSAP);
 
                 $('#employeeinfo_partialview').html(response);
             }

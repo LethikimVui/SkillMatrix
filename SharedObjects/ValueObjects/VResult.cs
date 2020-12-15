@@ -10,10 +10,11 @@ namespace SharedObjects.ValueObjects
     {
         public int id { get; set; }
         public string NTID { get; set; }
+        public string Topic { get; set; }
         public int evalScore { get; set; }
-        public int accessScore { get; set; }
+        public int assessScore { get; set; }
         public string latestEvaluatorName { get; set; }
-        public int modifiedDate { get; set; }
+        public string modifiedDate { get; set; }
         
     }
 }
