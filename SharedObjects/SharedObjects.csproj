@@ -91,9 +91,13 @@
     <Compile Include="Models\UpdateEmployeeModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StoreProcedures\SPEmployee.cs" />
+    <Compile Include="StoreProcedures\SPPosition.cs" />
+    <Compile Include="StoreProcedures\SPWorkCell.cs" />
     <Compile Include="StoreProcedures\SPSector.cs" />
     <Compile Include="StoreProcedures\SPSkillMatrix.cs" />
     <Compile Include="ValueObjects\VEmployee.cs" />
+    <Compile Include="ValueObjects\VPosition.cs" />
+    <Compile Include="ValueObjects\VWC.cs" />
     <Compile Include="ValueObjects\VSearchResult.cs" />
     <Compile Include="ValueObjects\VScore.cs" />
     <Compile Include="ValueObjects\VSector.cs" />

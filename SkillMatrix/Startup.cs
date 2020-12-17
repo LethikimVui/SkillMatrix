@@ -47,6 +47,9 @@ namespace SkillMatrix
             services.AddTransient<IAdminService, AdminService>();
             services.AddTransient<ISkillMatrixService, SkillMatrixService>();
             services.AddTransient<ISectorService, SectorService>();
+            services.AddTransient<IWorkCellService, WorkCellService>();
+            services.AddTransient<IWorkCellService, WorkCellService>();
+            services.AddTransient<IPositionService, PositionService>();
 
 
 

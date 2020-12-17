@@ -46,12 +46,16 @@
   <ItemGroup>
     <Compile Include="Interfaces\IAccountService.cs" />
     <Compile Include="Interfaces\IAdminService.cs" />
+    <Compile Include="Interfaces\IPositionService.cs" />
+    <Compile Include="Interfaces\IWorkCellService.cs" />
     <Compile Include="Interfaces\ISectorService.cs" />
     <Compile Include="Interfaces\ISkillMatrixService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AccountService.cs" />
     <Compile Include="Services\AdminService.cs" />
     <Compile Include="Services\BaseService.cs" />
+    <Compile Include="Services\PositionService.cs" />
+    <Compile Include="Services\WorkCellService.cs" />
     <Compile Include="Services\SectorService.cs" />
     <Compile Include="Services\SkillMatrixService.cs" />
   </ItemGroup>

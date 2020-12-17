@@ -1,9 +1,6 @@
 ﻿@model List<SharedObjects.ValueObjects.VSkillMatrix>
 @using SharedObjects.Extensions
 
-@*@{
-        var topics = ViewData["topics"] as IEnumerable<SharedObjects.ValueObjects.VTopicByTrainer>;
-    }*@
 
 <table class="table table-bordered table-hover table-striped table-responsive">
     <thead>
@@ -47,14 +44,6 @@
                     <span>@item.AssesScore</span>
                 </td>
                 <td>
-                    @*@foreach (var topic in topics)
-                        {
-                            if (topic.Id == item.Id)
-                            {
-                                <a class="btn default btn-xs red remove" data-username="@item.Id" title="Remove user"> <span class="glyphicon glyphicon-minus"></span></a>
-                            }
-                        }*@
-
                     @if (@User.GetSpecificClaim("Name") == item.Trainer)
                     {
                         <a class="btn default btn-xs red score" id="score" data-topicid="@item.Id" data-toggle="modal" href="#modal-evaluate" title="Score"> <span class="glyphicon glyphicon-pencil"></span></a>

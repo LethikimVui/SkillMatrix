@@ -26,10 +26,13 @@ namespace APISkillMatrix.Models
         public virtual DbQuery<VSkillMatrix> VSkillMatrix { get; set; }
         public virtual DbQuery<VSector> VSector { get; set; }
         public virtual DbQuery<VResult> VResult { get; set; }
+        public virtual DbQuery<VWC> VWC { get; set; }
+        public virtual DbQuery<VPosition> VPosition { get; set; }
         
+
         public virtual DbQuery<VTopicByTrainer> VTopicByTrainer { get; set; }
 
-
+        
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -85,6 +88,13 @@ namespace APISkillMatrix.Models
             modelBuilder.Entity<SkillMatrixContent>(entity =>
             {
                 entity.Property(e => e.Id).ValueGeneratedNever();
+            });
+            modelBuilder.Entity<Workcell>(entity =>
+            {
+                entity.Property(e => e.Workcell1)
+                    .HasColumnName("Workcell")
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
             });
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

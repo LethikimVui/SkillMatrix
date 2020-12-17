@@ -16,12 +16,16 @@ namespace SkillMatrix.Controllers
         private readonly IAdminService adminService;
         private readonly ISkillMatrixService skillMatrixService;
         private readonly ISectorService sectorService;
+        private readonly IWorkCellService workCellService;
+        private readonly IPositionService positionService;
 
-        public AdminController(IAdminService adminService, ISkillMatrixService skillMatrixService, ISectorService sectorService)
+        public AdminController(IAdminService adminService, ISkillMatrixService skillMatrixService, ISectorService sectorService, IWorkCellService workCellService, IPositionService positionService)
         {
             this.adminService = adminService;
             this.skillMatrixService = skillMatrixService;
             this.sectorService = sectorService;
+            this.workCellService = workCellService;
+            this.positionService = positionService;
         }
         [HttpPost]
         public async Task<IActionResult> GetSingleResult([FromBody] GetSingleResultViewModel model)
@@ -143,7 +147,12 @@ namespace SkillMatrix.Controllers
         public async Task<IActionResult> Add()
         {
             var sectors = await sectorService.GetAll();
+            var WCs = await workCellService.GetAll();
+            var Positions = await positionService.GetAll();
+            
             ViewData["sectors"] = sectors;
+            ViewData["WCs"] = WCs;
+            ViewData["Positions"] = Positions;
             return View();
         }
         [HttpPost]
@@ -174,11 +183,18 @@ namespace SkillMatrix.Controllers
                 }
                 else
                 {
-
+                    foreach (var item in result.Notifications)
+                    {
+                        ModelState.AddModelError("", item);
+                    }
                     return View(model);
                 }
             }
-            return View(model);
+            else
+            {
+                return View(model);
+
+            }
         }
         private async Task<string> UploadedFileAsync(AddEmployeeViewModel model)
         {

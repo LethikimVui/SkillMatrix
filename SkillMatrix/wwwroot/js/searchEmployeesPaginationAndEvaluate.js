@@ -6,6 +6,12 @@ $(document).ready(function () {
     $('body').off('click', '#score').on('click', '#score', LoadScore);
     $('body').off('click', '#btn-save').on('click', '#btn-save', Save);
 
+    function LoadEmployee() {
+        _tranferSAP = $("#idevaluatesap").data('evaluatesap');
+        LoadSkill(_tranferSAP);
+        LoadEmployeeInfo(_tranferSAP)
+    }
+
     function Search() {
         $('#employeeinfo_partialview').html('');
         $('#table-matrix').html('');
@@ -15,7 +21,7 @@ $(document).ready(function () {
     function LoadScore() {
        
         var model = new Object();
-        model.NTID =$("#id1").data('w'); //var _tranferSAP = $(this).data('sap');
+        model.NTID = $("#idevaluatesap").data('evaluatesap'); //var _tranferSAP = $(this).data('sap');
         model.TopicId = $(this).attr('data-topicid');
         debugger
         $.ajax({
@@ -27,24 +33,25 @@ $(document).ready(function () {
 
             success: function (response) {
                 var data = response.result;
-                $('#txt-topicid').val(model.TopicId) //(data.id);
-                $('#txt-Topic').val(model.NTID) // (data.topic);
+                $('#txt-topicid').val(data.id) //(data.id);
+                $('#txt-Topic').val(data.topic) // (data.topic);
                 $('#txt-ntid').val(data.ntid);
                 $('#txt-latestEvaluatorName').val(data.latestEvaluatorName);
                 $('#txt-EvalScore').val(data.evalScore);
                 $('#txt-assessScore').val(data.assessScore);
+                //$('#txt-Date').val(data.modifiedDate);
             }
         })
     }
     function Save() {
         if ($('#frm-save').valid()) {
             var model = new Object();
-            debugger
             model.Id = $('#txt-topicid').val();
             model.Sap = $('#txt-ntid').val();
             model.EvalScore = $('#txt-EvalScore').val();
             model.AssesScore = $('#txt-assessScore').val();
             model.LatestEvaluatorId = 10;
+            debugger
 
             $.ajax({
                 type: 'post',
@@ -56,8 +63,11 @@ $(document).ready(function () {
 
                     if (response.statusCode == 200) {
                         bootbox.alert("Update successfully!", function () {
-                            $('#modal-add').modal('hide')
-                            location.reload()
+                            $('#modal-evaluate').modal('hide')
+                            //LoadEmployeeInfo_partialview();
+                            LoadEmployee();
+                            //LoadSkill($('#txt-ntid').val())
+                            //location.reload()
                         })
                     }
                     else if (response.statusCode == 400) {
@@ -68,57 +78,34 @@ $(document).ready(function () {
                     }
                 }
             })
-            $('#modal-add').modal('hide');
+            $('#modal-evaluate').modal('hide');
+
         }
     }
-    function LoadEmployeeInfo() {
-        var _tranferSAP = $(this).data('sap'); //$('#txt-search').val();
+    function LoadEmployeeInfo(_tranferSAP) {
         $.ajax({
             type: 'post',
-            url: '/admin/GetBySAP',
-            dataType: 'json',
+            url: '/admin/GetBySAP_partialview',
             data: { sap: _tranferSAP },
             success: function (response) {
-                LoadSkill(_tranferSAP)
-                var data = response.result;
-                $('#sap').text(data.sap);
-                $('#name').text(data.name);
-                $('#email').text(data.email);
-                $('#superiorEmail').text(data.superiorEmail);
-                $('#workcell').text(data.workcell);
-                $('#position').text(data.position);
-                $('#sector').text(data.sector);
-                $('#image').attr("src", '/images/' + data.image);
-                $('#totalWeight').text(data.totalWeight);
+                
+                $('#employeeinfo_partialview').html(response);
             }
         })
     }
     function LoadEmployeeInfo_partialview() {
         var _tranferSAP = $(this).data('sap');
-        debugger
         $.ajax({
             type: 'post',
             url: '/admin/GetBySAP_partialview',
             data: { sap: _tranferSAP },
             success: function (response) {
                 LoadSkill(_tranferSAP);
-
                 $('#employeeinfo_partialview').html(response);
             }
         })
     }
-    function LoadSkill1() {
-        var _tranferSAP = $(this).data('sap');
-        debugger
-        $.ajax({
-            type: 'post',
-            url: '/admin/GetSkillMatrix',
-            data: { sap: _tranferSAP },
-            success: function (response) {
-                $('#table-matrix').html(response);
-            }
-        })
-    }
+
     function LoadSkill(_tranferSAP) {
         $.ajax({
             type: 'post',
@@ -130,7 +117,7 @@ $(document).ready(function () {
         })
     }
     var homeconfig = {
-        pageSize: 2,
+        pageSize: 3,
         pageIndex: 1
     }
     var EmployeeTable =
@@ -142,8 +129,6 @@ $(document).ready(function () {
             model.PageSize = homeconfig.pageSize
             model.PageIndex = homeconfig.pageIndex - 1;
             model.Input = _tranferSAP;
-
-            debugger
 
             $.ajax({
                 type: 'post',
