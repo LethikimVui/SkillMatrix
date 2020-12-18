@@ -50,6 +50,44 @@ namespace Services.Services
                 sectors = JsonConvert.DeserializeObject<List<VSector>>(apiResponse);
             }
             return sectors;
+       
+        }
+        public async Task<List<VSector>> GetAllNotActive()
+        {
+            List<VSector> sectors = new List<VSector>();
+
+            using (var response = await httpClient.GetAsync("api/sector/get-all-not-active"))
+            {
+                string apiResponse = await response.Content.ReadAsStringAsync();
+                sectors = JsonConvert.DeserializeObject<List<VSector>>(apiResponse);
+            }
+            return sectors;
+           
+        }
+        public async Task<ResponseResult> Delete(int id)
+        {
+            //httpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
+            ResponseResult responseResult = new ResponseResult();
+
+            using (var response = await httpClient.DeleteAsync("api/sector/" + id))
+            {
+                string apiResponse = await response.Content.ReadAsStringAsync();
+                responseResult = JsonConvert.DeserializeObject<ResponseResult>(apiResponse);
+            }
+            return responseResult;
+        }
+
+        public async Task<ResponseResult> Recover(int id)
+        {
+            //httpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
+            ResponseResult responseResult = new ResponseResult();
+
+            using (var response = await httpClient.DeleteAsync("api/sector/recover" + id))
+            {
+                string apiResponse = await response.Content.ReadAsStringAsync();
+                responseResult = JsonConvert.DeserializeObject<ResponseResult>(apiResponse);
+            }
+            return responseResult;
         }
     }
 }

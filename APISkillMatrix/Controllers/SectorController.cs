@@ -31,6 +31,13 @@ namespace APISkillMatrix.Controllers
 
             return result;
         }
+        [HttpGet("get-all-not-active")]
+        public async Task<List<VSector>> GetAllNotActive()
+        {
+            var result = await context.Query<VSector>().AsNoTracking().FromSql(SPSector.GetAllNotActive).ToListAsync();
+
+            return result;
+        }
         [HttpGet("search/{sector}")]
         public async Task<VSector> FindSector(string sector)
         {
@@ -52,6 +59,36 @@ namespace APISkillMatrix.Controllers
                 return BadRequest(new ResponseResult(400, ex.Message));
             }
         }
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            try
+            {
+                await context.Database.ExecuteSqlCommandAsync(SPSector.Delete, id);
+                return Ok(new ResponseResult(200));
+            }
 
+            catch (Exception ex)
+            {
+                return BadRequest(new ResponseResult(400, ex.Message));
+
+            }
+        }
+        [HttpDelete("recover/{id}")]
+
+        public async Task<IActionResult> Recover(int id)
+        {
+            try
+            {
+                await context.Database.ExecuteSqlCommandAsync(SPSector.Recover, id);
+                return Ok(new ResponseResult(200));
+            }
+
+            catch (Exception ex)
+            {
+                return BadRequest(new ResponseResult(400, ex.Message));
+
+            }
+        }
     }
 }

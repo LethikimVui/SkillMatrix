@@ -9,43 +9,39 @@
 <h4>AddSectorViewModel</h4>
 <hr />
 
-<div class="table-responsive col-md-12">
+<div class="container-fluid">
     <div class="row">
-        <div class="portlet-body">
+        <div class="col-md-12">
+            <div class="portlet light">
+                <div class="table-toolbar portlet light">
+                    <form class="modal-body" id="frm-save">
 
-            <div class="table-toolbar">
-                <form class="modal-body" id="frm-save">
+                        <div class="col-md-3 pull-left">
+                            <label for="txt-SAP">Sector</label>
+                            <input type="text" class="form-control" id="txt-sector" data-sector="" name="Sector" style="color:mediumvioletred">
+                        </div>
+                        <div class="col-md-4  pull-left">
+                            <a class="btn btn-success" id="btn-add">Add</a>
+                        </div>
 
-                    <div class="col-md-3 pull-left">
-                        <label for="txt-SAP">SAP</label>
-                        <input type="text" class="form-control" id="txt-sector" data-sap="SAP" name="SAP" style="color:mediumvioletred">
-                    </div>
-
-                    <div class="col-md-4  pull-left">
-                        <a class="btn btn-success" id="btn-add">Add</a>
-                    </div>
-
-
-                </form>
+                    </form>
+                </div>
             </div>
-        </div>
-    </div>
-    <div class="table-responsive col-md-12">
-        <table class="table table-bordered table-hover table-striped table-responsive">
-            <thead>
-                <tr class="text-center bold font-green-sharp">
 
-                    <td>Sector</td>
-                    
-                </tr>
-            </thead>
-            <tbody id="table-content">
-                <tr class="text-center">
-                    <td id="sap"></td>
-                   
-                </tr>
-            </tbody>
-        </table>
+            <div class="col-md-6">
+                <div class="portlet light">
+                    <div id="table-active">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="portlet light">
+                    <div id="table-not-active">
+                    </div>
+                </div>
+            </div>
+
+        </div>
     </div>
 </div>
 
